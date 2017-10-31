@@ -1,3 +1,13 @@
+# Import libraries
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+library(plotly)
+library(maps)
+
+
+
+
 # Put the city names into a vecor
 city <- c('Asotin', 'Cathlamet', 'Chehalis', 'Chelan', 'Chewelah', 'Chimacum', 'Clallam Bay',
           'Claquato', 'Cle Elum', 'Entiat', 'Enumclaw', 'Hoquiam', 'Ilwaco', 'Issaquah', 'Klickitat', 
@@ -20,7 +30,7 @@ long <- c('-117.0482', '-123.3832', '-122.9640', '-120.0168', '-117.7155', '-122
           '-123.1018', '-122.0489', '-121.3601', '-122.0982', '-121.8254', '-117.4260', '-122.6026', '-122.4443', '-122.8529', 
           '-119.4395', '-120.3087', '-122.9093', '-120.1223', '-118.3430', '-120.4203', '-120.3103', '-120.9667')
 
-#  Put some descriptions into a cevtor
+#  Put some descriptions into a vector
 desc <- c()
 
 # Associate a tribe with each city
@@ -39,7 +49,12 @@ View(nativeData)
 
 
 # Export the data into a csv file
-write.csv(nativeData, file = 'nativeData.csv')
+write.csv(nativeData, './Desktop/NativeMap/nativeData.csv')
+
+# Get the map data by state, and filter to get only the state of Washington
+map <- map_data('state')
+map <- filter(map, region == 'washington')
+View(map)
 
 
 
